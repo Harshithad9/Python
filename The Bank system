@@ -1,0 +1,67 @@
+class Account:
+    def __init__(self, name, balance, min_balance):
+        self.name = name
+        self.balance = balance
+        self.min_balance = min_balance
+
+    def deposit(self, amount):
+        if amount <= 0:
+            print("❌ Invalid deposit amount!")
+            return
+        self.balance += amount
+        print(f"✅ ₹{amount} deposited to {self.name}'s account.")
+
+    def withdraw(self, amount):
+        if amount <= 0:
+            print("❌ Invalid withdrawal amount!")
+            return False
+
+        if self.balance - amount >= self.min_balance:
+            self.balance -= amount
+            print(f"✅ ₹{amount} withdrawn from {self.name}'s account.")
+            return True
+        else:
+            print(f"❌ {self.name} has Insufficient Funds!")
+            return False
+
+    def transfer(self, amount, target_account):
+        print(f"\n🔄 Transferring ₹{amount} from {self.name} to {target_account.name}...")
+        if self.withdraw(amount):
+            target_account.deposit(amount)
+            print("✅ Transfer Successful!")
+        else:
+            print("❌ Transfer Failed!")
+
+    def __str__(self):
+        return f"{self.name}'s Account | Balance: ₹{self.balance}"
+
+
+# Child Classes
+class Savings(Account):
+    def __init__(self, name, balance):
+        super().__init__(name, balance, min_balance=0)
+
+
+class Current(Account):
+    def __init__(self, name, balance):
+        super().__init__(name, balance, min_balance=-1000)
+
+
+# 🎯 Testing Logic (As per question)
+
+alice = Savings("Alice", 5000)
+bob = Current("Bob", 2000)
+
+print("\n--- Initial Balances ---")
+print(alice)
+print(bob)
+
+# Alice transfers ₹2000 to Bob
+alice.transfer(2000, bob)
+
+# Bob tries to transfer ₹6000 to Alice
+bob.transfer(6000, alice)
+
+print("\n--- Final Balances ---")
+print(alice)
+print(bob)
