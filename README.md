@@ -8,8 +8,8 @@ This repository contains a collection of Python projects and exercises that I ha
 ## 📌 About Me
 
 👩‍💻 **Harshitha D**
-🎓 Computer Science & Engineering Student
-💡 Passionate about Software Development, Backend Engineering, and Problem Solving
+- 🎓 Computer Science & Engineering Student
+- 💡 Passionate about Software Development, Backend Engineering, and Problem Solving
 
 ---
 
