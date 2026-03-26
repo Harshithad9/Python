@@ -1,0 +1,57 @@
+import sys
+
+class Customer:
+    bank_name = "STATE BANK OF INDIA"   
+
+    def __init__(self, name):
+        self.name = name
+        self.balance = 1000   # Default balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"{amount} deposited successfully.")
+        print(f"Current Balance: {self.balance}")
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            print("Insufficient Funds! Session terminated for security.")
+            sys.exit()
+        else:
+            self.balance -= amount
+            print(f"{amount} withdrawn successfully.")
+            print(f"Remaining Balance: {self.balance}")
+
+
+print("🏦 Welcome to", Customer.bank_name)
+
+name = input("Enter your name: ")
+customer = Customer(name)
+
+print(f"\nHello {customer.name}, your account is created with {customer.balance}")
+
+while True:
+    print("\n===== MENU =====")
+    print("1. Deposit")
+    print("2. Withdraw")
+    print("3. Check Balance")
+    print("4. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == '1':
+        amount = float(input("Enter amount to deposit: "))
+        customer.deposit(amount)
+
+    elif choice == '2':
+        amount = float(input("Enter amount to withdraw: "))
+        customer.withdraw(amount)
+
+    elif choice == '3':
+        print(f"Current Balance: ₹{customer.balance}")
+
+    elif choice == '4':
+        print("Thank you for banking with us!")
+        break
+
+    else:
+        print("Invalid choice! Please select a valid option.")
